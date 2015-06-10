@@ -7,10 +7,6 @@ require 'tilt/erb'
 
 set :public_folder, File.dirname(__FILE__) + './'
 
-configure do
-  config.serve_static_assets = true
-end
-
 #Player
 
 get '/play/:arq' do
