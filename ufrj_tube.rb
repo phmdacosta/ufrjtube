@@ -5,10 +5,10 @@ require 'pathname'
 require 'carrierwave/ffmpeg'
 require 'tilt/erb'
 
-#set :public_folder, File.dirname(__FILE__) + './'
+set :public_folder, File.dirname(__FILE__) + '/'
 #set :public_folder, 'public'
 
-class UfrjTube < Sinatra::Base
+#class UfrjTube < Sinatra::Base
 
   #Player
 
@@ -149,5 +149,5 @@ class UfrjTube < Sinatra::Base
     uploader.encode('mp4', {resolution: '360', video_bitrate: '192k'})
 
   end
-end
+#end
 
