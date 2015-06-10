@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>:: UFRJ Tube ::</title>
+	
+	<!-- core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    <!--[jQuery]-->
+    <script src="/js/jquery.js"></script>
+
+  <script language="javascript" type="text/javascript">
+      $(function(){
+          $('#upload_button').click(function () {
+              var formData = new FormData($('#upload_form')[0]);
+
+              //send an ajax request to our action
+              $.ajax({
+                  url: '/fileupload',
+                  type: 'POST',
+                  enctype: 'multipart/form-data',
+                  data: formData,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  success: $(function () {
+                      $("#loading_div").show();
+                  })
+              });
+          });
+      });
+      $(document).ajaxComplete(function(){
+          $("#loading_div").hide();
+          $("#success_div").show();
+      });
+  </script>
+</head><!--/head-->
+
+<body class="homepage">
+
+    <header id="header">
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<style>
+		*{font-family:verdana;}
+		.container {
+		  display: table;
+		}
+		.row {
+			display: table-row;
+		}
+		.column {
+			display: table-cell;
+			vertical-align: middle;
+			border-bottom: 2px dotted #ff0000;
+		}
+	</style>
+	
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+			
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.html"><img src="/images/logo.png" alt="logo"></a>
+                </div>
+				
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="/subir">Subir novo VÃ­deo</a></li>
+                        <li><a href="/lista">Listar/Ver VÃ­deos</a></li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+    </header><!--/header-->
+    <body>
+		<form name="upload_form" id="upload_form" enctype="multipart/form-data">
+            <div align=center >
+              <div class="container" style=''>
+                <div class="row">
+                  <div class="column">
+                    <h1>Teste Upload</h1>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <p>*É possível fazer upload apenas de arquivos dos seguintes formatos: MP4, AVI, WMV, RMVB</p>
+                    <p>*Os arquivos serão encodados para H264 e AAC, no formato MP4</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <input type="file" name="myfile" id="file_field">
+                    <button id="upload_button" type="button">Upload</button>
+                  </div>
+                </div>
+                <div class="row" id="loading_div" style="display:none;">
+                  <div class="column">
+                    <p id="loading">Efetuando upload do arquivo...</p>
+                  </div>
+                </div>
+                <div class="row" id="success_div" style="display:none;">
+                  <div class="column">
+                    <p id="success">Arquivo inserido com sucesso!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+		</form>
+    </body>
+	</body>
+</html>

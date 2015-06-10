@@ -1,0 +1,16 @@
+require 'rubygems'
+require 'sinatra'
+require 'pathname'
+
+set :public_folder, File.dirname(__FILE__) + './'
+
+get '/play/:arq' do
+  erb :player
+end
+
+get '/lista' do
+  dir = './'
+  @arqs = Dir.glob("./arquivos/*.mp4").map{|f| f.split('/').last}
+  
+  erb :lista
+end

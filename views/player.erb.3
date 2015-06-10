@@ -1,0 +1,31 @@
+<% nomeArq = File.basename(@arq,File.extname(@arq)).gsub('_',' ').dup[1..-1].capitalize %>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .frame {
+    background: url("/images/tv.png") no-repeat right top;
+  }
+  .outer{ position:fixed; top:0; left:0; width:100%; height:100%; background: url("/images/tv.png") no-repeat center;}
+  .estiloplayer{ position:fixed; top:10%; left:0; width:100%; height:100%;}
+  .inner{ width: 50%; height: 50%; top: 25%; margin: 0 auto; position: relative;}
+</style>
+<script type='text/javascript' src='/js/clappr.min.js'></script>
+</head>
+<body>
+  <div align=center style="">
+    <h1><%=nomeArq%></h1>  
+    <br/><br/><br/><br/>
+    <div id='player' class='estiloplayer'>
+    </div>
+  </div>
+<script>
+    var player = new Clappr.Player({
+                 source: '/arquivos/<%=@arq%>',
+                 watermark: '/images/marca.png', position: 'top-right',
+                 poster: "/images/logo_grande3.png",
+                 parentId: '#player'
+                 });
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+require 'sinatra'
+=begin
+
+RDE easy parse template
+
+=end
+
+require 'C:\Program Files (x86)\RDE\rde_export.rb'
+rde_classmodule = []
+rde_temp = ""
+rde_constants = rde_temp.split(",").collect{|item|
+  begin
+    eval(item)
+  rescue NameError
+    nil
+  end
+}
+(rde_classmodule|rde_constants).uniq.each{|klass|
+  begin
+    rde_export(klass, binding)
+  rescue NameError
+  end
+}
+
+export_Object_private
+

@@ -1,0 +1,29 @@
+<style>
+*{font-family:verdana;}
+.container {
+  display: table;
+}
+.row {
+ display: table-row;
+}
+.column {
+  display: table-cell;
+  vertical-align: middle;
+  halign=left;
+}
+</style>
+<div align=center style="">
+  <div class="container">
+  <div class="row">
+  <div class="column">Qualidade</div>
+  <div class="column">Video</div>
+  </div>
+  <% @arqs.each do |arq| %>
+    <% nomeArq = File.basename(arq,File.extname(arq)).gsub('_',' ').dup[1..-1].capitalize %>
+     <div class="row">
+      <div class="column"><img src='.\images\<%=arq[0]%>.png'></div>
+      <div class="column"><a href='\play\<%=arq%>'><%=nomeArq%></a></div>
+     </div>
+  <% end %>
+</div>
+</style> 
