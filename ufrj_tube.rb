@@ -6,7 +6,7 @@ require 'carrierwave/ffmpeg'
 require 'tilt/erb'
 
 #set :public_folder, File.dirname(__FILE__) + './'
-set :public_folder, 'public'
+set :public_folder, 'public/'
 
 #Player
 
