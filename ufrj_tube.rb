@@ -6,6 +6,7 @@ require 'carrierwave/ffmpeg'
 require 'tilt/erb'
 
 set :public_folder, File.dirname(__FILE__) + './'
+config.serve_static_assets = true
 
 #Player
 
