@@ -1,3 +1,7 @@
+require 'ufrj_tube'
+
+run UfrjTube.new
+
 map '/js' do
   run Rack::Directory.new('./js')
 end
