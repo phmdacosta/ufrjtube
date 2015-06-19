@@ -6,9 +6,6 @@ require 'carrierwave/ffmpeg'
 require 'tilt/erb'
 
 set :public_folder, File.dirname(__FILE__) + '/'
-#set :public_folder, 'public'
-
-#class UfrjTube < Sinatra::Base
 
   #Player
 
@@ -81,12 +78,12 @@ set :public_folder, File.dirname(__FILE__) + '/'
     end
 
     def full_encode_name
-      @vd_resolution + "_" + encode_file_name + @file_format
+      @vd_resolution + encode_file_name + @file_format
     end
 
     def encode format, opts = {}
       @file_format = ".#{format}"
-      tmp_path = File.join File.dirname(current_path), @vd_resolution + "_" + encode_file_name + ".#{format}"
+      tmp_path = File.join File.dirname(current_path), @vd_resolution + encode_file_name + ".#{format}"
       file = movie current_path
       file.transcode tmp_path, option(format, file, opts), transcoder_options
     end
@@ -134,7 +131,7 @@ set :public_folder, File.dirname(__FILE__) + '/'
 
     #Efetuano encoding do arquivo
     uploader.current_file_name(uploader.filename)
-    uploader.video_resolution("720")
+    uploader.video_resolution("a")
     uploader.encode(:mp4, {resolution: '720', video_bitrate: '192k'})
 
     #Deletando arquivo original, não é necessário que ele exista
@@ -142,12 +139,10 @@ set :public_folder, File.dirname(__FILE__) + '/'
 
     #Efetuando transcoding para duas resoluções mais baixas
     uploader.current_file_name(uploader.full_encode_name)
-    uploader.video_resolution("480")
+    uploader.video_resolution("m")
     uploader.encode('mp4', {resolution: '480', video_bitrate: '192k'})
     uploader.current_file_name(uploader.full_encode_name)
-    uploader.video_resolution("360")
+    uploader.video_resolution("b")
     uploader.encode('mp4', {resolution: '360', video_bitrate: '192k'})
 
   end
-#end
-
