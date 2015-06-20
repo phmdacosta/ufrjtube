@@ -12,7 +12,8 @@ set :public_folder, File.dirname(__FILE__) + '/'
 
 Aws::EC2::Client.new(
     access_key_id: @@creds['access_key_id'],
-    secret_access_key: @@creds['secret_access_key']
+    secret_access_key: @@creds['secret_access_key'],
+    region: 'us-west-2'
 )
 
 
