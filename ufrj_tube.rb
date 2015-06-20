@@ -7,6 +7,15 @@ require 'tilt/erb'
 
 set :public_folder, File.dirname(__FILE__) + '/'
 
+@@config_file = File.join(File.dirname(__FILE__), "config.yml")
+@@creds = YAML.load(File.read(@@config_file))
+
+Aws::EC2::Client.new(
+    access_key_id: @@creds['access_key_id'],
+    secret_access_key: @@creds['secret_access_key']
+)
+
+
   #Player
 
   get '/play/:arq' do
